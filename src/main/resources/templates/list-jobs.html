@@ -10,8 +10,14 @@
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
-    <!-- TODO #3 - Use the same list display from search.html -->
-
+    <!-- TO-DONE #3 -->
+<table th:each="individualJob, idx : ${jobs}" th:class="${idx.odd} ? 'odd'">
+    <tr th:each="jobPost : ${individualJob}">
+        <td th:text="${jobPost.key}"></td>
+        <td th:text="${jobPost.value}"></td>
+    </tr>
+    <br/>
+</table>
 </div>
 
 </body>

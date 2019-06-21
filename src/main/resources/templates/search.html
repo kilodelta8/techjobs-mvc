@@ -36,8 +36,13 @@
 
     <hr />
 
-    <!-- TODO #2 - Loop over jobs map to display all job fields -->
-
+    <!--TO-DONE #2-->
+<table th:each="individualJob, idx: ${jobPosts}" th:class="${idx.odd} ? 'odd'">
+    <tr th:each="jobPost : ${individualJob}">
+        <td th:text="${jobPost.key}"></td>
+        <td th:text="${jobPost.value}"></td>
+    </tr>
+</table>
 </div>
 
 </body>
