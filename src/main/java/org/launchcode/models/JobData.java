@@ -23,15 +23,13 @@ public class JobData {
     private static ArrayList<HashMap<String, String>> allJobs;
 
     /**
-     * Fetch list of all values from loaded data,
-     * without duplicates, for a given column.
      *
      * @param field The column to retrieve values from
      * @return List of all of the values of the given field
      */
     public static ArrayList<String> findAll(String field) {
 
-        // load data, if not already loaded
+
         loadData();
 
         ArrayList<String> values = new ArrayList<>();
@@ -44,7 +42,7 @@ public class JobData {
             }
         }
 
-        // Bonus mission: sort the results
+
         Collections.sort(values);
 
         return values;
@@ -52,19 +50,15 @@ public class JobData {
 
     public static ArrayList<HashMap<String, String>> findAll() {
 
-        // load data, if not already loaded
+
         loadData();
 
-        // Bonus mission; normal version returns allJobs
+
         return new ArrayList<>(allJobs);
     }
 
     /**
-     * Returns results of search the jobs data by key/value, using
-     * inclusion of the search term.
      *
-     * For example, searching for employer "Enterprise" will include results
-     * with "Enterprise Holdings, Inc".
      *
      * @param column   Column that should be searched.
      * @param value Value of teh field to search for
@@ -72,7 +66,7 @@ public class JobData {
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
 
-        // load data, if not already loaded
+
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
@@ -90,14 +84,13 @@ public class JobData {
     }
 
     /**
-     * Search all columns for the given term
      *
      * @param value The search term to look for
      * @return      List of all jobs with at least one field containing the value
      */
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
-        // load data, if not already loaded
+
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
@@ -119,19 +112,17 @@ public class JobData {
         return jobs;
     }
 
-    /**
-     * Read in data from a CSV file and store it in a list
-     */
+
     private static void loadData() {
 
-        // Only load data once
+
         if (isDataLoaded) {
             return;
         }
 
         try {
 
-            // Open the CSV file and set up pull out column header info and records
+
             Resource resource = new ClassPathResource(DATA_FILE);
             InputStream is = resource.getInputStream();
             Reader reader = new InputStreamReader(is);
@@ -142,7 +133,7 @@ public class JobData {
 
             allJobs = new ArrayList<>();
 
-            // Put the records into a more friendly format
+
             for (CSVRecord record : records) {
                 HashMap<String, String> newJob = new HashMap<>();
 
@@ -153,7 +144,7 @@ public class JobData {
                 allJobs.add(newJob);
             }
 
-            // flag the data as loaded, so we don't do it twice
+
             isDataLoaded = true;
 
         } catch (IOException e) {
